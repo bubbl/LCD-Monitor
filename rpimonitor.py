@@ -35,7 +35,7 @@ class Process:
     lcd.gotorc(1,0)
     lcd.text("RPi Temp:")
     lcd.gotorc(2,0)
-    lcd.text(trpiemp)
+    lcd.text(rpiemp)
     lcd.gotorc(4,0)
     lcd.text("Room Temp:")
     lcd.gotorc(5,0)
