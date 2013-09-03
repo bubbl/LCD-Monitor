@@ -9,10 +9,8 @@ class Process:
   def __init__(self):
     # Initialize LCD
     lcd.init()
-    # Turn the backlight on
-    lcd.backlight(0)
-#    lcd.set_contrast(100)
-#    lcd.set_brightness(256)
+    # Turn the backlight on and adjust it
+    lcd.backlight(1)
 
   def run(self, jsonString):
     # Parse data as json
@@ -40,7 +38,6 @@ class Process:
     lcd.text("Room Temp:")
     lcd.gotorc(5,0)
     lcd.text(roomtemp)
-    # Also print string in console
 
 # Class client design to work as web client and get information 
 # from RPi-Monitor embedded web server
