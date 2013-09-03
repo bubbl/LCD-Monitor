@@ -10,7 +10,7 @@ class Process:
     # Initialize LCD
     lcd.init()
     # Turn the backlight on
-    lcd.backlight(8)
+    lcd.backlight(0)
 #    lcd.set_contrast(100)
 #    lcd.set_brightness(256)
 
