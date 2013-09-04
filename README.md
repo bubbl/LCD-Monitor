@@ -42,3 +42,16 @@ RUN:
     2) use as a self-dependent application:
         sudo python tempmonitor.py
     * To run the app in background, add & (Shift + 7) after the command
+
+RUN AT STARTUP:
+===============
+
+    Copy init script to init directory:
+        sudo cp lcdtempr /etc/init.d/
+    
+    Make script exetutable: 
+        sudo chmod +x /etc/init.d/lcdtempr
+    
+    Make the lcdtempr init script known to the system by using the 
+update-rc.d command:
+        sudo update-rc.d lcdtempr defaults
