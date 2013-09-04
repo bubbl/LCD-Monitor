@@ -27,17 +27,21 @@ class Process:
     except:
       room_temp="--.--"
     # Construct string to be displayed on screens
-    rpitemp = "%s   \x7fC" %rpi_temperature
-    roomtemp = "%s   \x7fC" %room_temp
+    rpitemp = "%s" %rpi_temperature
+    roomtemp = "%s" %room_temp
     lcd.centre_text(0, text1)
     lcd.gotorc(1,0)
     lcd.text("RPi Temp:")
     lcd.gotorc(2,0)
     lcd.text(rpitemp)
+    lcd.gotorc(2,8)
+    lcd.text("\x7fC")
     lcd.gotorc(4,0)
     lcd.text("Room Temp:")
     lcd.gotorc(5,0)
     lcd.text(roomtemp)
+    lcd.gotorc(5,8)
+    lcd.text("\x7fC")
 
 # Class client design to work as web client and get information 
 # from RPi-Monitor embedded web server
