@@ -1,5 +1,4 @@
-'''
-	An LCD to display my RPi and RPi-Monitor
+''' An LCD to display my RPi and RPi-Monitor
 
 	This is a modified version of Xavier Berger's LCD display project. It can be found here: http://rpi-experiences.blogspot.fr/2013/08/a-lcd-display-my-rpi-and-rpi-monitor.html
 
@@ -101,7 +100,7 @@ def main():
   except KeyboardInterrupt:
     # if Ctrl+C has been pressed
     # turn off the lcd backlight
-    lcd.backlight(0); 
+    lcd.backlight(0);
     lcd.cls()
     # exit from the program 
     sys.exit(0)
