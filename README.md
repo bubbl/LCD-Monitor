@@ -1,16 +1,44 @@
 rpimonitor stats
 ================
 
-An LCD to display my RPi and RPi-Monitor
+    Author: Bartlomiej Bania
+    Webpage: http://www.bartbania.com/
+    Project Webpage: https://github.com/bubbl/rpimonitor_stats/
 
-This is a modified version of Xavier Berger's LCD display project. It can be found here: http://rpi-experiences.blogspot.fr/2013/08/a-lcd-display-my-rpi-and-rpi-monitor.html
+PARTS USED:
+===========
 
-This version adds a DS18B20 1-WIRE Digital Thermometer (<a href="http://learn.adafruit.com/downloads/pdf/adafruits-raspberry-pi-lesson-11-ds18b20-temperature-sensing.pdf">wiring instructions</a>) to monitor room temperature.
+    - Nokia 5110 LCD screen
+    - DS18B20 1-WIRE Digital Thermometer
+    - 6 x 10k ohm resistors
+    - 1x 1k ohm resistor
+    - jumper cables
+    - breadboard
 
-It implements <a href="https://github.com/XavierBerger/RPi-Monitor">RPi-monitor</a> application to gather Raspberry Pi's and room temperature and display it on a screen.
+HARDWARE SETUP:
+===============
 
-Follow the instrucions provided by Xavier to set up RPi-monitor, install <a href="https://github.com/XavierBerger/pcd8544">pcd8544 library</a>, and run
+    The PCD8544 and Digital Thermometer can be installed on the breadboard 
+    as shown here: http://www.bartbania.com/wp-content/uploads/2013/09/rpimonitor_bb.png
+    
+        Note: If you want to reproduce this assembly, check carefully the 
+        pin order, it may be different, as the PCD8455 board pinning differs 
+        from model to model.
+    
+    DS18B20 1-WIRE Digital Thermometer Setup:
+    http://www.raspberrypi-spy.co.uk/2013/03/raspberry-pi-1-wire-digital-thermometer-sensor/
 
-<code>sudo ./rpimonitor.py</code>
-or
-<code>sudo python rpimonitor.py</code>
+INSTALLATION:
+=============
+
+        git clone https://github.com/bubbl/rpimonitor_stats.git
+        cd /path/to/your/rpimonitor_stats
+
+RUN:
+====
+
+    1) use with RPi-Monitor installed (http://rpi-experiences.blogspot.fr/):
+        sudo python rpimonitor.py
+    2) use as a self-dependent application:
+        sudo python tempmonitor.py
+    * To run the app in background, add & (Shift + 7) after the command
