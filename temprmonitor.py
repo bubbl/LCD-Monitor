@@ -1,5 +1,4 @@
-'''
-    Author: Bartlomiej Bania
+''' Author: Bartlomiej Bania
     Webpage: http://www.bartbania.com/
     Project Webpage: https://github.com/bubbl/rpimonitor_stats/
 
@@ -15,8 +14,8 @@
     The PCD8544 and Digital Thermometer can be installed on the breadboard 
     as shown here: http://www.bartbania.com/wp-content/uploads/2013/09/rpimonitor_bb.png
     
-        Note: If you want to reproduce this assembly, check carefully the 
-        pin order, it may be different, as the PCD8455 board pinning differs 
+        Note: If you want to reproduce this assembly, check carefully the
+        pin order, it may be different, as the PCD8455 board pinning differs
         from model to model.
     
     DS18B20 1-WIRE Digital Thermometer Setup:
@@ -40,13 +39,13 @@ import pcd8544.lcd as lcd
 import time, sys ,os, subprocess
 from datetime import datetime#!/usr/bin/python
 
-    # The '28-xxx' in the file name should be changed accordingly to name in your /sys/bus/w1/devices folder. 
+    # The '28-xxx' in the file name should be changed accordingly to name in your /sys/bus/w1/devices folder.
 file = "/sys/bus/w1/devices/28-000004e4b880/w1_slave"
 
     #Initiate LCD
 lcd.init()
-        # Turn backlight on/off. The number corrensponds to backlight 
-        # brightness, 0 being light off, 10 being the brightest.'''
+        # Turn backlight on/off. The number corrensponds to backlight
+        # brightness, 0 being light off, 10 being the brightest.
 lcd.backlight(5)
         # Prepare degrees celsius symbol
 lcd.define_custom_char([0x00, 0x07, 0x05, 0x07, 0x00])
@@ -97,7 +96,7 @@ while 1:
     except KeyboardInterrupt:
             # If Ctrl+C has been pressed
             # turn off the lcd backlight
-        lcd.backlight(0); 
+        lcd.backlight(0);
         lcd.cls()
-            # Exit from the program 
+            # Exit from the program
         sys.exit(0)
