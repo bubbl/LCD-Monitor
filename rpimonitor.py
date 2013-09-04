@@ -1,3 +1,22 @@
+'''
+	An LCD to display my RPi and RPi-Monitor
+
+	This is a modified version of Xavier Berger's LCD display project. It can be found here: http://rpi-experiences.blogspot.fr/2013/08/a-lcd-display-my-rpi-and-rpi-monitor.html
+
+	This version adds a DS18B20 1-WIRE Digital Thermometer (wiring instructions:
+	http://learn.adafruit.com/downloads/pdf/adafruits-raspberry-pi-lesson-11-ds18b20-temperature-sensing.pdf)
+	to monitor room temperature.
+
+	It implements RPi-monitor https://github.com/XavierBerger/RPi-Monitor application to gather Raspberry Pi's and room temperature and display it on a screen.
+
+	Follow the instrucions provided by Xavier to set up RPi-monitor, install pcd8544 library:
+	https://github.com/XavierBerger/pcd8544 and run
+
+	sudo ./rpimonitor.py
+	or
+	sudo python rpimonitor.py
+'''
+
 #!/usr/bin/env python
 import httplib, time, os, sys, json
 import pcd8544.lcd as lcd
