@@ -9,8 +9,8 @@ class Process:
   def __init__(self):
     # Initialize LCD
     lcd.init()
-    # Turn the backlight on and adjust it
-    lcd.backlight(1)
+    # Turn the backlight on/off and adjust it
+    lcd.backlight(0)
 
   def run(self, jsonString):
     # Parse data as json
@@ -27,8 +27,8 @@ class Process:
     except:
       room_temp="--.--"
     # Construct string to be displayed on screens
-    rpitemp = "%.2f \x7fC" %rpi_temperature
-    roomtemp = "%.2f \x7fC" %room_temp
+    rpitemp = "%s   \x7fC" %rpi_temperature
+    roomtemp = "%s   \x7fC" %room_temp
     lcd.centre_text(0, text1)
     lcd.gotorc(1,0)
     lcd.text("RPi Temp:")
@@ -65,8 +65,8 @@ class Client:
        # Close the connection to RPi-Monitor embedded server
        connection.close()
      finally:
-       # Wait 5 secondes before restarting the loop
-       time.sleep(5)
+       # Wait x seconds before restarting the loop
+       time.sleep(3)
 
 # Main function
 def main():
