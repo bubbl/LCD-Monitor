@@ -15,7 +15,7 @@
 #! /bin/sh
 # /etc/init.d/lcdtempr
  
- 
+export HOME 
 case "$1" in
     start)
         echo "Starting LCD"
