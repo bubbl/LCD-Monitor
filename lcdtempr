@@ -21,8 +21,7 @@ case "$1" in
     start)
         echo "Starting LCD"
         
-sudo python /path/to/rpimonitor_stats/temprmonitor.py  
-2>&1 &
+sudo python /your/path/to/rpimonitor_stats/temprmonitor.py &
     ;;
     stop)
         echo "Stopping LCD"
