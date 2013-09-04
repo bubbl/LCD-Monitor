@@ -46,7 +46,7 @@ file = "/sys/bus/w1/devices/28-000004e4b880/w1_slave"
 lcd.init()
         # Turn backlight on/off. The number corrensponds to backlight
         # brightness, 0 being light off, 10 being the brightest.
-lcd.backlight(5)
+lcd.backlight(0)
         # Prepare degrees celsius symbol
 lcd.define_custom_char([0x00, 0x07, 0x05, 0x07, 0x00])
 

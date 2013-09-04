@@ -5,6 +5,7 @@
 # Default-Start: 2 3 4 5
 # Default-Stop: 0 1 6
 # Description: time / CPU temp / room temp
+# Change path to your temprmonitor.py path
 # Make script exetutable: sudo chmod +x /etc/init.d/lcdtempr
 # Make the lcdtempr init script known to the system by using the 
 # update-rc.d command: sudo update-rc.d lcdtempr defaults
@@ -20,7 +21,11 @@ case "$1" in
     start)
         echo "Starting LCD"
         
+<<<<<<< HEAD
     sudo python /your/path/to/rpimonitor_stats/temprmonitor.py &
+=======
+sudo python /your/path/to/rpimonitor_stats/temprmonitor.py &
+>>>>>>> 66e2048b862be86c3b8ff749599273dab54fa4f3
     ;;
     stop)
         echo "Stopping LCD"
