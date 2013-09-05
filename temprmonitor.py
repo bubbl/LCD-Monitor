@@ -37,7 +37,11 @@
 #!/usr/bin/python
 import pcd8544.lcd as lcd
 import time, sys ,os, subprocess
-from datetime import datetime
+#from datetime import datetime
+
+    # optional load of drivers if not listed in /etc/modules
+#os.system('modprobe w1-gpio')
+#os.system('modprobe w1-therm')
 
     # The '28-xxx' in the file name should be changed accordingly to name in your /sys/bus/w1/devices folder.
 file = "/sys/bus/w1/devices/28-000004e4b880/w1_slave"
@@ -46,7 +50,8 @@ file = "/sys/bus/w1/devices/28-000004e4b880/w1_slave"
 lcd.init()
         # Turn backlight on/off. The number corrensponds to backlight
         # brightness, 0 being light off, 10 being the brightest.
-lcd.backlight(3)
+lcd.backlight(5)
+lcd.set_contrast(512)
         # Prepare degrees celsius symbol
 lcd.define_custom_char([0x00, 0x07, 0x05, 0x07, 0x00])
 
@@ -70,21 +75,22 @@ def get_soc():
     res = os.popen('/opt/vc/bin/vcgencmd measure_temp').readline()
     return(res.replace("temp=","").replace("'C",""))
 
+
 while 1:
     try:
         tempVal = get_temp(file)
             # To adjust number of decimal places, change the '1' in "%.1f" value
         roomtemp = "%.1f" %tempVal
         cputemp = get_soc()
-        time = datetime.now().strftime('%H:%M:%S')
+#        time = datetime.now().strftime('%H:%M:%S')
             # Go to first line of screen and print current time
-        lcd.centre_text(0,time)
+#        lcd.centre_text(0,time)
             # Go to third screen line and print CPU temperature
-        lcd.gotorc(2,0)
+        lcd.gotorc(1,0)
         lcd.text("CPU Temp:")
-        lcd.gotorc(3,0)
+        lcd.gotorc(2,0)
         lcd.text(cputemp)
-        lcd.gotorc(3,5)
+        lcd.gotorc(2,5)
         lcd.text("\x7fC")
             # Go to fifth screen line and print room temperature
         lcd.gotorc(4,0)
