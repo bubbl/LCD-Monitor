@@ -43,12 +43,13 @@ from datetime import datetime
 #os.system('modprobe w1-gpio')
 #os.system('modprobe w1-therm')
 
+    # Initiate LCD
 lcd.init()
-            # Turn backlight on/off. The number corrensponds to backlight
-            # brightness, 0 being light off, 10 being the brightest.
+    # Turn backlight on/off. The number corrensponds to backlight
+    # brightness, 0 being light off, 10 being the brightest.
 lcd.backlight(1)
 lcd.set_contrast(512)
-            # Prepare degrees celsius symbol
+    # Prepare degrees celsius symbol
 lcd.define_custom_char([0x00, 0x07, 0x05, 0x07, 0x00])
 
 class Process:
