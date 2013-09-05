@@ -37,7 +37,7 @@
 #!/usr/bin/python
 import pcd8544.lcd as lcd
 import time, sys ,os, subprocess
-from datetime import datetime#!/usr/bin/python
+from datetime import datetime
 
     # The '28-xxx' in the file name should be changed accordingly to name in your /sys/bus/w1/devices folder.
 file = "/sys/bus/w1/devices/28-000004e4b880/w1_slave"
@@ -46,7 +46,7 @@ file = "/sys/bus/w1/devices/28-000004e4b880/w1_slave"
 lcd.init()
         # Turn backlight on/off. The number corrensponds to backlight
         # brightness, 0 being light off, 10 being the brightest.
-lcd.backlight(0)
+lcd.backlight(3)
         # Prepare degrees celsius symbol
 lcd.define_custom_char([0x00, 0x07, 0x05, 0x07, 0x00])
 
@@ -96,7 +96,7 @@ while 1:
     except KeyboardInterrupt:
             # If Ctrl+C has been pressed
             # turn off the lcd backlight
-        lcd.backlight(0);
         lcd.cls()
+        lcd.backlight(0);
             # Exit from the program
         sys.exit(0)
