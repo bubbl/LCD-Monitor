@@ -37,14 +37,11 @@
 #!/usr/bin/python
 import pcd8544.lcd as lcd
 import time, sys ,os, subprocess
-#from datetime import datetime
+from datetime import datetime
 
     # optional load of drivers if not listed in /etc/modules
 #os.system('modprobe w1-gpio')
 #os.system('modprobe w1-therm')
-
-    # The '28-xxx' in the file name should be changed accordingly to name in your /sys/bus/w1/devices folder.
-file = "/sys/bus/w1/devices/28-000004e4b880/w1_slave"
 
     #Initiate LCD
 lcd.init()
@@ -56,6 +53,9 @@ lcd.set_contrast(512)
 lcd.define_custom_char([0x00, 0x07, 0x05, 0x07, 0x00])
 
 def get_temp(file):
+        # The '28-xxx' in the file name should be changed accordingly 
+        # to name in your /sys/bus/w1/devices folder.
+    file = "/sys/bus/w1/devices/28-000004e4b880/w1_slave"
         # Open file written to by temp sensor
     tfile = open(file)
         # Read all text in file
@@ -82,22 +82,24 @@ while 1:
             # To adjust number of decimal places, change the '1' in "%.1f" value
         roomtemp = "%.1f" %tempVal
         cputemp = get_soc()
-#        time = datetime.now().strftime('%H:%M:%S')
+        time = datetime.now().strftime('%H:%M:%S')
+        time2 = datetime.today().strftime('%d %b %Y')
             # Go to first line of screen and print current time
-#        lcd.centre_text(0,time)
+        lcd.centre_text(0,"Today is:")
             # Go to third screen line and print CPU temperature
-        lcd.gotorc(1,0)
-        lcd.text("CPU Temp:")
-        lcd.gotorc(2,0)
+        lcd.centre_text(1,time2)
+        lcd.centre_text(2,time)
+#        lcd.text("CPU Temp:")
+        lcd.gotorc(5,8)
         lcd.text(cputemp)
-        lcd.gotorc(2,5)
+        lcd.gotorc(5,12)
         lcd.text("\x7fC")
             # Go to fifth screen line and print room temperature
-        lcd.gotorc(4,0)
-        lcd.text("Room Temp:")
+#        lcd.gotorc(4,0)
+        lcd.centre_text(4,"--Room | RPi--")
         lcd.gotorc(5,0)
         lcd.text(roomtemp)
-        lcd.gotorc(5,5)
+        lcd.gotorc(5,4)
         lcd.text("\x7fC")
     except KeyboardInterrupt:
             # If Ctrl+C has been pressed
