@@ -43,64 +43,85 @@ from datetime import datetime
 #os.system('modprobe w1-gpio')
 #os.system('modprobe w1-therm')
 
-    #Initiate LCD
 lcd.init()
-        # Turn backlight on/off. The number corrensponds to backlight
-        # brightness, 0 being light off, 10 being the brightest.
-lcd.backlight(5)
+            # Turn backlight on/off. The number corrensponds to backlight
+            # brightness, 0 being light off, 10 being the brightest.
+lcd.backlight(1)
 lcd.set_contrast(512)
-        # Prepare degrees celsius symbol
+            # Prepare degrees celsius symbol
 lcd.define_custom_char([0x00, 0x07, 0x05, 0x07, 0x00])
 
-def get_temp(file):
-        # The '28-xxx' in the file name should be changed accordingly 
-        # to name in your /sys/bus/w1/devices folder.
-    file = "/sys/bus/w1/devices/28-000004e4b880/w1_slave"
-        # Open file written to by temp sensor
-    tfile = open(file)
-        # Read all text in file
-    text = tfile.read()
-        # Close file once text is read
-    tfile.close()
-        # Pull out the temperature value
-    temprdata = text.split("\n")[1].split(" ")[9]
-        # The first two characters are "t=", so get rid of those and convert the temperature from a string to a number.
-    temperature = float(temprdata[2:])
-        # Put the decimal point in the right place and display it.
-    temperature = temperature / 1000
-    return(temperature)
+class Process:
+    def run(self):
 
-def get_soc():
-        # Read CPU temperature and extract the numbers only
-    res = os.popen('/opt/vc/bin/vcgencmd measure_temp').readline()
-    return(res.replace("temp=","").replace("'C",""))
+        def get_temp(file):
+                # The '28-xxx' in the file name should be changed accordingly 
+                # to name in your /sys/bus/w1/devices folder.
+            file = "/sys/bus/w1/devices/28-000004e4b880/w1_slave"
+                # Open file written to by temp sensor
+            tfile = open(file)
+                # Read all text in file
+            text = tfile.read()
+                # Close file once text is read
+            tfile.close()
+                # Pull out the temperature value
+            temprdata = text.split("\n")[1].split(" ")[9]
+                # The first two characters are "t=", so get rid of those and convert the temperature from a string to a number.
+            temperature = float(temprdata[2:])
+                # Put the decimal point in the right place and display it.
+            temperature = temperature / 1000
+            return(temperature)
+        
+        def get_soc():
+                # Read CPU temperature and extract the numbers only
+            res = os.popen('/opt/vc/bin/vcgencmd measure_temp').readline()
+            return(res.replace("temp=","").replace("'C",""))
 
+        try:
+            rmtemp = get_temp(file)
+        except:
+            rmtemp = "--.-"
+        try:
+            rpitemp = get_soc()
+        except:
+            rpitemp = "--.-"
 
-while 1:
-    try:
-        tempVal = get_temp(file)
-            # To adjust number of decimal places, change the '1' in "%.1f" value
-        roomtemp = "%.1f" %tempVal
-        cputemp = get_soc()
-        time = datetime.now().strftime('%H:%M:%S')
-        time2 = datetime.today().strftime('%d %b %Y')
-            # Go to first line of screen and print current time
+        roomtemp = "%s" %rmtemp
+        cputemp = "%s" %rpitemp
+        tm = datetime.now().strftime('%H:%M')
+        tm2 = datetime.today().strftime('%d %b %Y')
         lcd.centre_text(0,"Today is:")
-            # Go to third screen line and print CPU temperature
-        lcd.centre_text(1,time2)
-        lcd.centre_text(2,time)
-#        lcd.text("CPU Temp:")
-        lcd.gotorc(5,8)
-        lcd.text(cputemp)
-        lcd.gotorc(5,12)
-        lcd.text("\x7fC")
-            # Go to fifth screen line and print room temperature
-#        lcd.gotorc(4,0)
+            # Go to second line of screen and print current time and date
+        lcd.centre_text(1,tm2)
+        lcd.centre_text(2,tm)
+            # Go to fifth screen line and print room/CPU temperature
         lcd.centre_text(4,"--Room | RPi--")
         lcd.gotorc(5,0)
         lcd.text(roomtemp)
         lcd.gotorc(5,4)
         lcd.text("\x7fC")
+        lcd.gotorc(5,8)
+        lcd.text(cputemp)
+        lcd.gotorc(5,12)
+        lcd.text("\x7fC")
+
+class Client:
+    def __init__(self):
+        self.process = Process()
+    def run(self):
+        while True:
+            try:
+                client = Process()
+                client.run()
+            finally:
+                    # Refresh every x seconds
+                time.sleep(5)
+
+def main():
+  while 1:
+    try:
+      client = Client()
+      client.run()
     except KeyboardInterrupt:
             # If Ctrl+C has been pressed
             # turn off the lcd backlight
@@ -108,3 +129,6 @@ while 1:
         lcd.backlight(0);
             # Exit from the program
         sys.exit(0)
+
+if __name__=="__main__":
+    main()
