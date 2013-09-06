@@ -58,7 +58,7 @@ class Process:
         def get_temp(file):
                 # The '28-xxx' in the file name should be changed accordingly 
                 # to name in your /sys/bus/w1/devices folder.
-            file = "/sys/bus/w1/devices/28-000004e4b880/w1_slave"
+            file = "/sys/bus/w1/devices/28-000004a1c58b/w1_slave"
                 # Open file written to by temp sensor
             tfile = open(file)
                 # Read all text in file
@@ -179,11 +179,11 @@ if __name__=="__main__":
     lcd.init()
         # Turn slowly backlight on. To switch backlight off change the below
         # for loop for lcd.backlight(0)
-    for i in range(0,256,16):
+    for i in range(0,1000,16):
         lcd.set_brightness(i)
         time.sleep(0.025)
         # Set specific contrast
-    lcd.set_contrast(200)
+    lcd.set_contrast(256)
         # Display Raspberry logo
     lcd.gotorc(0,0)
     for x in logo:
