@@ -1,14 +1,14 @@
-''' Author: Bartlomiej Bania
+''' LCD-Monitor
+    Author: Bartlomiej Bania
     Webpage: http://www.bartbania.com/
     Project Webpage: https://github.com/bubbl/rpimonitor_stats/
 
     PARTS USED:
-    - Nokia 5110 LCD screen
-    - DS18B20 1-WIRE Digital Thermometer
-    - 6 x 10k ohm resistors
-    - 1x 1k ohm resistor
-    - jumper cables
-    - breadboard
+        - Nokia 5110 LCD screen with PCD8544 driver
+        - DS18B20 1-WIRE Digital Thermometer
+        - 4.7k ohm resistor for thermometer
+        - wires / jumper cables
+        - Humble Pi / breadboard
 
     HARDWARE SETUP:
     The PCD8544 and Digital Thermometer can be installed on the breadboard 
@@ -22,15 +22,15 @@
     http://www.raspberrypi-spy.co.uk/2013/03/raspberry-pi-1-wire-digital-thermometer-sensor/
 
     INSTALLATION:
-        git clone https://github.com/bubbl/rpimonitor_stats.git
-        cd /path/to/your/rpimonitor_stats
+        git clone https://github.com/bubbl/LCD-Monitor.git
+        cd /path/to/your/LCD-Monitor
 
     RUN:
     1) use with RPi-Monitor installed (http://rpi-experiences.blogspot.fr/):
         sudo python rpimonitor.py
     2) use as a self-dependent application:
-        sudo python tempmonitor.py
-    * To run the app in background, add & (Shift + 7) after the command
+        sudo python lcdmonitor.py
+    * To run the app in background, add & after the command
 '''
 # Application starts here
 
