@@ -1,4 +1,4 @@
-rpimonitor stats
+LCD-Monitor
 ================
 
     Author: Bartlomiej Bania
@@ -13,8 +13,8 @@ PARTS USED:
     - Nokia 5110 LCD screen with PCD8544 driver
     - DS18B20 1-WIRE Digital Thermometer
     - 1x 4.7k ohm resistor for thermometer
-    - jumper cables
-    - Humble Pi or breadboard
+    - wires / jumper cables
+    - Humble Pi / breadboard
 
 ![alt tag](https://raw.github.com/bubbl/LCD-Monitor/master/doc/humble-pi_wiring.jpg)
 
