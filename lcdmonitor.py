@@ -1,41 +1,5 @@
-''' LCD-Monitor
-    Author: Bartlomiej Bania
-    Webpage: http://www.bartbania.com/
-    Project Webpage: https://github.com/bubbl/rpimonitor_stats/
-
-    PARTS USED:
-        - Nokia 5110 LCD screen with PCD8544 driver
-        - DS18B20 1-WIRE Digital Thermometer
-        - 4.7k ohm resistor for thermometer
-        - wires / jumper cables
-        - Humble Pi / breadboard
-
-    HARDWARE SETUP:
-    The PCD8544 and Digital Thermometer can be installed on the breadboard 
-    as shown here: http://www.bartbania.com/wp-content/uploads/2013/09/rpimonitor_bb.png
-    
-        Note: If you want to reproduce this assembly, check carefully the
-        pin order, it may be different, as the PCD8455 board pinning differs
-        from model to model.
-    
-    DS18B20 1-WIRE Digital Thermometer Setup:
-    http://www.raspberrypi-spy.co.uk/2013/03/raspberry-pi-1-wire-digital-thermometer-sensor/
-
-    INSTALLATION:
-        git clone https://github.com/bubbl/LCD-Monitor.git
-        cd /path/to/your/LCD-Monitor
-
-    RUN:
-    1) use with RPi-Monitor installed (http://rpi-experiences.blogspot.fr/):
-        sudo python rpimonitor.py
-    2) use as a self-dependent application:
-        sudo python lcdmonitor.py
-    * To run the app in background, add & after the command
-'''
-# Application starts here
-
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
+
 import pcd8544.lcd as lcd
 import time, sys ,os, subprocess, threading
 from datetime import datetime
@@ -91,7 +55,8 @@ class Process:
         cputemp = "%s" %rpitemp
             # Prepare degrees celsius symbol
         lcd.define_custom_char([0x00, 0x07, 0x05, 0x07, 0x00])
-        lcd.centre_text(0,"Temperature")
+        lcd.gotorc(0,1)
+        lcd.text("Temperature")
         lcd.centre_text(2,"--Room | RPi--")
         lcd.gotorc(4,0)
             # Display room temperature
@@ -121,8 +86,8 @@ class Client:
                 time.sleep(10)
                 lcd.cls()
             except KeyboardInterrupt:
-                lcd.cls()
                 lcd.backlight(0);
+                lcd.cls()
                 sys.exit(0)
 
 def main():
@@ -185,6 +150,7 @@ if __name__=="__main__":
         # Set specific contrast
     lcd.set_contrast(256)
         # Display Raspberry logo
+    lcd.cls()
     lcd.gotorc(0,0)
     for x in logo:
         lcd.lcd_data(x)
