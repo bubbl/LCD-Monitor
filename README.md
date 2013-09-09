@@ -3,23 +3,28 @@ rpimonitor stats
 
     Author: Bartlomiej Bania
     Webpage: http://www.bartbania.com/
-    Project Webpage: https://github.com/bubbl/rpimonitor_stats/
+    Project Webpage: https://github.com/bubbl/LCD-Monitor/
+
+![alt tag](https://raw.github.com/bubbl/LCD-Monitor/master/doc/humble-pi.jpg)
 
 PARTS USED:
 ===========
 
-    - Nokia 5110 LCD screen
+    - Nokia 5110 LCD screen with PCD8544 driver
     - DS18B20 1-WIRE Digital Thermometer
-    - 6 x 10k ohm resistors
-    - 1x 1k ohm resistor
+    - 1x 4.7k ohm resistor for thermometer
     - jumper cables
-    - breadboard
+    - Humble Pi or breadboard
+
+![alt tag](https://raw.github.com/bubbl/LCD-Monitor/master/doc/humble-pi_wiring.jpg)
 
 HARDWARE SETUP:
 ===============
 
     The PCD8544 and Digital Thermometer can be installed on the breadboard 
-    as shown here: http://www.bartbania.com/wp-content/uploads/2013/09/rpimonitor_bb.png
+    as shown here: 
+    
+![alt tag](https://raw.github.com/bubbl/LCD-Monitor/master/doc/rpimonitor_bb.png)
     
         Note: If you want to reproduce this assembly, check carefully the 
         pin order, it may be different, as the PCD8455 board pinning differs 
@@ -31,8 +36,8 @@ HARDWARE SETUP:
 INSTALLATION:
 =============
 
-        git clone https://github.com/bubbl/rpimonitor_stats.git
-        cd /path/to/your/rpimonitor_stats
+        git clone https://github.com/bubbl/LCD-Monitor.git
+        cd /path/to/your/LCD-Monitor
 
 RUN:
 ====
@@ -40,10 +45,16 @@ RUN:
     1) use with RPi-Monitor installed (http://rpi-experiences.blogspot.fr/):
         sudo python rpimonitor.py
     2) use as a self-dependent application:
-        sudo python tempmonitor.py
-    * To run the app in background, add & (Shift + 7) after the command
+        sudo python lcdmonitor.py
+    * To run the app in background, add & after the command
+    
+DEMO:
+=====
 
-RUN AT STARTUP:
+http://youtu.be/6T7H8-_5dsA
+
+
+RUN AT STARTUP (TESTING!):
 ===============
 
     Copy init script to init directory:
